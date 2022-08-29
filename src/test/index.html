@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.zjgsxx.cn/assets/js/vue.min.js"></script>
+  <style>
+    #app {
+      height: 50vh;
+      width: 50vw;
+      background-color: bisque;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">{{name}}
+    <todo-item @change="changeP" v-for="item in filterList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+
+  </div>
+  <script>
+    Vue.component('todo-item', {
+      props: ['todo'],
+      data () {
+        return {
+          name: 'luza',
+          age: 1,
+          sex: 1
+        }
+      },
+      methods: {
+        change (str) {
+          this.$emit("change", str)
+
+        }
+      },
+      name: "todoItem",
+      template: `<li @click=change(todo.text)>{{ todo.text }}</li>`
+    })
+    this.app = new Vue({
+      props: ["hehe"],
+      methods: {
+        changeP (str) {
+          console.log(str)
+        }
+      },
+
+      computed: {
+        filterList () {
+          return this.groceryList.filter(_ => _.id > 0)
+        }
+      },
+      data: {
+        name: "lzian", groceryList: [
+          { id: 0, text: '蔬菜' },
+          { id: 1, text: '奶酪' },
+          { id: 2, text: '随便其它什么人吃的东西' }
+        ]
+      },
+    })
+    app.$mount('#app')
+
+  </script>
+
+</body>
+
+</html>
