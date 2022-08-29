@@ -21,10 +21,36 @@
 // console.log(_clone(a).age)
 // const a =  [true, false].every(_ => _)
 // console.log(a);
-function V () { }
-V.fly = function () {
-  return this;
+// function V () { }
+// V.fly = function () {
+//   return this;
+// }
+// console.log (V.fly())
+// // const v = new V();
+// // console.log(v.)
+// const obj = {
+//   fn() {
+//     return 'hello World'
+//   }
+// }
+// for(let key in obj){
+//   console.log(obj[key])
+// }
+
+const sharedPropertyDefinition = {
+  enumerable: true,
+  configurable: true,
+  get: function () { },
+  set: function () { }
 }
-console.log (V.fly())
-// const v = new V();
-// console.log(v.)
+const obj = {};
+// Object.defineProperty(obj, 'name', {
+
+// })
+["name", "age"].forEach(element => {
+  sharedPropertyDefinition.enumerable = !sharedPropertyDefinition.enumerable
+  Object.defineProperty(obj, element, sharedPropertyDefinition)
+});
+for (let key in obj) {
+  console.log(key)
+}
